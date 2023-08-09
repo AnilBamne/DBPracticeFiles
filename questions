@@ -1,0 +1,47 @@
+
+SELECT * FROM patients p 
+Inner Join admissions a On a.patient_id=p.patient_id
+Inner join province_names pr On pr.province_id=p.province_id
+Inner join doctors d On d.doctor_id = a.attending_doctor_id
+where p.patient_id<9
+
+SELECT * FROM patients p 
+left Join admissions a On a.patient_id=p.patient_id
+left join province_names pr On pr.province_id=p.province_id
+left join doctors d On d.doctor_id = a.attending_doctor_id
+where p.patient_id<9
+
+SELECT * FROM patients p 
+full Join admissions a On a.patient_id=p.patient_id
+full join province_names pr On pr.province_id=p.province_id
+full join doctors d On d.doctor_id = a.attending_doctor_id
+where p.patient_id<9
+
+select first_name,last_name,gender from patients where gender='M'
+
+select distinct birth_date from patients Order by birth_date asc
+SELECT
+  DISTINCT YEAR(birth_date) AS birth_year
+FROM patients
+ORDER BY birth_year;
+
+SELECT first_name
+FROM patients
+GROUP BY first_name
+HAVING COUNT(first_name) = 1
+
+select patient_id,first_name from patients where first_name like 's____%s'
+
+select patients.patient_id, first_name,diagnosis from patients
+inner join admissions on admissions.patient_id = patients.patient_id
+
+select patients.patient_id, first_name from patients
+inner join admissions  on admission.patient_id= patients.patient_id
+where admissions.diagnosis='Dementia'
+SELECT
+  patients.patient_id,
+  first_name,
+  last_name
+FROM patients
+  JOIN admissions ON admissions.patient_id = patients.patient_id
+WHERE diagnosis = 'Dementia';
